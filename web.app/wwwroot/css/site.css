@@ -1,0 +1,23 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.scrolling-list {
+    max-height: 500px; /* Set the maximum height for the scrollable list */
+    overflow-y: auto; /* Add a vertical scrollbar when needed */
+}

@@ -1,0 +1,157 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="row">
+    <div class="col">
+        <form method="post">
+            <div class="input-group mb-3">
+                <input asp-for="SearchAddress" type="text" class="form-control form-control-lg" placeholder="Enter an address to search" aria-label="Enter an address to search" aria-describedby="button-addon2">
+                <button class="btn btn-dark" type="submit" id="button-addon2">Search</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-3 col-md-12">
+        <div class="card text-dark bg-light">
+            <div class="card-body">
+                <h5>Search Result</h5>
+            </div>
+
+            @if (Model.SearchResults != null && Model.SearchResults.Count > 0)
+            {
+                <div class="scrolling-list">
+                    <div class="list-group text-dark bg-light list-group-flush">
+                        @foreach (var result in Model.SearchResults)
+                        {
+                            <a href="javascript:void(0);" class="list-group-item list-group-item-action" data-lat="@result.Latitude" data-lon="@result.Longitude">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">@result.Address</h6>
+                                    <small>@result.Zip</small>
+                                </div>
+                                <p class="mb-1">@result.City </p>
+                                <small>  @result.Latitude, @result.Longitude</small>
+                            </a>
+                        }
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="card-footer"><small>Enter an address above to search!</small></div>
+            }
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-12">
+        <!-- Display 10 closest locations -->
+        <div class="card text-dark bg-light">
+            <div class="card-body">
+                <h5>Closest Locations</h5>
+            </div>
+            <ol class="list-group list-group-numbered list-group-flush" id="closestLocations">
+            </ol>
+            <div class="card-footer"> <small>Select an address to see the 10 closest locations </small></div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-12">
+        <div class="text-center">
+            <div id="map" style="height: 400px;"></div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    @* <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqVA30RHG9DbP4LTaByRMXdj78i7fF-UI&callback=initMap">
+    </script>*@
+    <script>
+        (g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })
+            ({
+                key: "AIzaSyAgooBurlF7DHoHbAHLWX2pRgtGFUOXUDw",
+                v: "weekly"
+            });</script>
+    <script>
+        // Google map implementation to show proximity
+        let map;
+        let markers = [];
+        let pinBackground;
+        let advancedMarkerElement;
+
+        async function initMap() {
+            const { Map } = await google.maps.importLibrary("maps");
+            const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary(
+                "marker",
+            );
+            map = new Map(document.getElementById("map"), {
+                center: { lat: 40.0, lng: -105.0 },
+                zoom: 14,
+                mapTypeId: 'satellite',
+                mapId: '5383b2b816614890',
+            });
+            pinBackground = new PinElement({
+                background: "#FBBC04",
+            });
+            advancedMarkerElement = AdvancedMarkerElement;
+        }
+
+        initMap();
+
+        // Implementation of the selection and closest location retrieval
+        $(document).ready(function() {
+            $(".list-group-item").click(function() {
+                //Highlight selected address
+                $(".list-group-item").removeClass("active");
+                $(this).addClass("active");
+
+                // Get latitude and longitude from the selected item data attributes
+                const lat = parseFloat($(this).data("lat"));
+                const lon = parseFloat($(this).data("lon"));
+
+                // Set Markers
+                markers.forEach((marker) => marker.setMap(null));
+                markers = [];
+
+
+                const selectedLocation = new google.maps.LatLng(lat, lon);
+                const selectedMarker = new advancedMarkerElement({
+                    position: selectedLocation,
+                    map: map,
+                    title: `Selected Location: (${lat},${lon})`,
+                    content: pinBackground.element,
+                });
+                markers.push(selectedMarker);
+
+                var bounds = new google.maps.LatLngBounds();
+
+                // Perform an AJAX request to get the 10 closest locations based on lat and lon
+                $.get(`/?handler=GetClosestLocations&lat=${lat}&lon=${lon}`, function(data) {
+                    const closestLocations = $("#closestLocations");
+                    closestLocations.empty();
+                    //console.log(data);
+
+                    $.each(data, function(index, location) {
+
+                        const listItem = $("<li>").text(`${location.address} (${location.latitude}, ${location.longitude})`).addClass("list-group-item").addClass("list-group-item-light").addClass("small");
+                        closestLocations.append(listItem);
+
+                        // Add a marker for each closest location on the map
+                        const locationLatLng = new google.maps.LatLng(location.latitude, location.longitude);
+                        const locationMarker = new google.maps.Marker({
+                            position: locationLatLng,
+                            map: map,
+                            title: `${location.address}: ${location.latitude}, ${location.longitude}`,
+                        });
+                        markers.push(locationMarker);
+                        bounds.extend(locationMarker.getPosition());
+                    });
+                    map.fitBounds(bounds);
+                });
+            });
+        });
+    </script>
+}
+
