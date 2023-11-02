@@ -12,7 +12,6 @@ namespace web.test
     {
         public List<LocationData> GetCachedData()
         {
-            // Provide test data as needed for your tests
             return new List<LocationData>
             {
                 new LocationData
@@ -60,11 +59,8 @@ namespace web.test
                     Latitude = 36.5432,
                     Longitude = -90.8765
                 },
-                // Add more test data as required
             };
         }
-
-        // Implement other methods of ICsvDataProvider if needed for your tests
     }
 
 }

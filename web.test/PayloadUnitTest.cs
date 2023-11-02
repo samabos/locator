@@ -12,13 +12,10 @@ namespace web.test
         [Fact]
         public void LoadAddressDictionary_ReturnsValidDictionary()
         {
-            // Arrange
             var payload = new Payload(new MockCsvDataProvider());
 
-            // Act
             var addressDictionary = payload.LoadAddressDictionary();
 
-            // Assert
             Assert.NotNull(addressDictionary);
             Assert.True(addressDictionary.Count > 0);
         }
@@ -26,13 +23,10 @@ namespace web.test
         [Fact]
         public void LoadQuadTree_ConstructsValidQuadTree()
         {
-            // Arrange
             var payload = new Payload(new MockCsvDataProvider());
 
-            // Act
             var quadTree = payload.LoadQuadTree();
 
-            // Assert
             Assert.NotNull(quadTree); 
         }
 

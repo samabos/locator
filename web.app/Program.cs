@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using web.app.utilities;
 using web.app.utilities.interfaces;
 
@@ -15,6 +18,8 @@ builder.Services.AddSingleton<IHaversine, Haversine>();
 builder.Services.AddSingleton<IQuery, Query>();
 
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
