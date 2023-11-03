@@ -5,13 +5,14 @@
 1. Ensure you have Visual Studio 2022 installed on your system.
 2. Open Visual Studio: Launch Visual Studio 2022.
 3. Download the source code as a ZIP file from the email attachment.
-4. Open Visual Studio. Go to "File" > "Open" > "Project/Solution." Select the project folder from the extracted ZIP download.
-5. In Visual Studio, go to "Build" > "Build Solution" to compile the application.
-6. After a successful build, press F5 to run the application.
-7. A web browser will open, and you can access the application.
-8. Enter an address in the search box and click "Search" to retrieve location results.
-9. Click on a location result to view the 10 closest locations on the map.
-10. The 10 closest locations will be displayed on Google Maps below the search results.
+4.	Open Visual Studio. Go to "File" > "Open" > "Project/Solution." Select the project folder from the extracted ZIP download and navigate to the web.app folder select the web.app.sln.
+5.	In the web.app > appsettings.json enter the MAP Key AIzaSyAgooBurlF7DHoHbAHLWX2pRgtGFUOXUDw into the GoogleMap-ApiKey this will allow the map to work.
+6. In Visual Studio, go to "Build" > "Build Solution" to compile the application.
+7. After a successful build, press F5 to run the application.
+8. A web browser will open, and you can access the application.
+9. Enter an address in the search box and click "Search" to retrieve location results.
+10. Click on a location result to view the 10 closest locations on the map.
+12. The 10 closest locations will be displayed on Google Maps below the search results.
 
 ## Documentation of the Locator App
 
