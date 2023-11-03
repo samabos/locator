@@ -5,8 +5,8 @@
 1. Ensure you have Visual Studio 2022 installed on your system.
 2. Open Visual Studio: Launch Visual Studio 2022.
 3. Download the source code as a ZIP file from the email attachment.
-4.	Open Visual Studio. Go to "File" > "Open" > "Project/Solution." Select the project folder from the extracted ZIP download and navigate to the web.app folder select the web.app.sln.
-5.	In the web.app > appsettings.json enter the MAP Key AIzaSyAgooBurlF7DHoHbAHLWX2pRgtGFUOXUDw into the GoogleMap-ApiKey this will allow the map to work.
+4. Open Visual Studio. Go to "File" > "Open" > "Project/Solution." Select the project folder from the extracted ZIP download and navigate to the web.app folder select the web.app.sln.
+5. In the web.app > appsettings.json enter the MAP Key "Key-Sent-to-your-Email" into the GoogleMap-ApiKey this will allow the map to work.
 6. In Visual Studio, go to "Build" > "Build Solution" to compile the application.
 7. After a successful build, press F5 to run the application.
 8. A web browser will open, and you can access the application.
