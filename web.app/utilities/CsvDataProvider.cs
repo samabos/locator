@@ -8,13 +8,15 @@ namespace web.app.utilities
 {
     public class CsvDataProvider : ICsvDataProvider
     {
+        private readonly ILogger<CsvDataProvider> logger;
         private List<LocationData> cachedData;
         private readonly string csvFilePath;
 
-        public CsvDataProvider(string csvFilePath)
+        public CsvDataProvider(string csvFilePath, ILogger<CsvDataProvider> logger)
         {
             this.csvFilePath = csvFilePath;
             cachedData = LoadLocationData();
+            this.logger = logger;
         }
 
         public List<LocationData> GetCachedData()
@@ -25,14 +27,19 @@ namespace web.app.utilities
         private List<LocationData> LoadLocationData()
         {
             List<LocationData> locationData = new List<LocationData>();
-
-            using (var reader = new StreamReader(csvFilePath))
-            using (var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture)))
+            try
             {
-                locationData = csv.GetRecords<LocationData>().ToList();
+                using (var reader = new StreamReader(csvFilePath))
+                using (var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture)))
+                {
+                    locationData = csv.GetRecords<LocationData>().ToList();
+                }
             }
-
-        return locationData;
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "An error occurred in LoadLocationData: {ErrorMessage}", ex.Message);
+            }
+            return locationData;
     }
 
 

@@ -19,6 +19,12 @@ namespace web.app.utilities
             this.haversine = haversine;
         }
 
+        /// <summary>
+        /// Performing a nearest location search using the quadtree and haversine formular
+        /// </summary>
+        /// <param name="lat"></param>
+        /// <param name="lon"></param>
+        /// <returns></returns>
         public List<LocationData> GetNearestLocations(double lat, double lon)
         {
             List<LocationData> nearestLocations = new List<LocationData>();
@@ -37,12 +43,16 @@ namespace web.app.utilities
             return nearestLocations;
         }
 
-        // Performing a case-insensitive partial match on the address
+        /// <summary>
+        /// Performing a case-insensitive partial match on the address
+        /// </summary>
+        /// <param name="address"></param>
+        /// <returns></returns>
         public List<LocationData> SearchByAddress(string address) {
             List<LocationData> searchResults = new List<LocationData>();
             try
             {
-                throw new Exception("testing");
+                //throw new Exception("testing");
                 searchResults = addressDictionary
                     .Where(x => x.Key.Contains(address, StringComparison.OrdinalIgnoreCase))
                     .SelectMany(kv => kv.Value)

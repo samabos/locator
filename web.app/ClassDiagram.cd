@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="web.app.utilities.CsvDataProvider" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAACAAAAAAAAAgAAAAAAIAAAAAAIAAA=</HashCode>
+      <FileName>utilities\CsvDataProvider.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="web.app.utilities.Haversine" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>utilities\Haversine.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="web.app.utilities.Payload" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAQAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>utilities\Payload.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="web.app.utilities.Query" BaseTypeListCollapsed="true">
+    <Position X="3.75" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAUAAAAAAAAAAAACAAAAAAAAAAQAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>utilities\Query.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.22" Collapsed="true" />
+  </Class>
+  <Class Name="web.app.models.LocationData">
+    <Position X="9.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAIAAAICAAAAAAAAAACAAAABAAAAAA=</HashCode>
+      <FileName>models\LocationData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="web.app.Pages.IndexModel">
+    <Position X="0.75" Y="2.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>CAAAAABAAAAAAABCAAAAAAAAAAAACAAAAAQIAAAQAAA=</HashCode>
+      <FileName>Pages\Index.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="web.app.utilities.interfaces.ICsvDataProvider">
+    <Position X="9.25" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>utilities\interfaces\ICsvDataProvider.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="web.app.utilities.interfaces.IHaversine">
+    <Position X="6.5" Y="4.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>utilities\interfaces\IHaversine.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="web.app.utilities.interfaces.IPayload">
+    <Position X="6.5" Y="1" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>utilities\interfaces\IPayload.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="web.app.utilities.interfaces.IQuery">
+    <Position X="3.75" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>utilities\interfaces\IQuery.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

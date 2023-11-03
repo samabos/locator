@@ -4,7 +4,14 @@ namespace web.app.utilities
 {
     public class Haversine : IHaversine
     {
-        // Method to calculate the distance between two sets of coordinates
+        /// <summary>
+        ///  Method to calculate the distance between two sets of coordinates
+        /// </summary>
+        /// <param name="lat1"></param>
+        /// <param name="lon1"></param>
+        /// <param name="lat2"></param>
+        /// <param name="lon2"></param>
+        /// <returns></returns>
         public double CalculateDistance(double lat1, double lon1, double lat2, double lon2)
         {
             const double earthRadius = 6371; // Radius of the Earth in kilometers

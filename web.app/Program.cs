@@ -1,25 +1,29 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+
 using web.app.utilities;
 using web.app.utilities.interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration.AddJsonFile("appsettings.json");
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-// Use the IWebHostEnvironment to get the content root path
 var environment = builder.Environment;
 var csvFilePath = Path.Combine(environment.ContentRootPath, "data", "Data.csv"); // Get the CSV file path
-builder.Services.AddSingleton<ICsvDataProvider>(new CsvDataProvider(csvFilePath)); // Pass the csvFilePath to the constructor
+builder.Services.AddSingleton<ICsvDataProvider>(provider =>
+{
+    var logger = provider.GetRequiredService<ILogger<CsvDataProvider>>();
+    return new CsvDataProvider(csvFilePath, logger);
+});
+
 builder.Services.AddSingleton<IPayload, Payload>();
 builder.Services.AddSingleton<IHaversine, Haversine>();
 builder.Services.AddSingleton<IQuery, Query>();
 
+
 var app = builder.Build();
-
-
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

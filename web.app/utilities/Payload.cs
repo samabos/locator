@@ -16,7 +16,10 @@ namespace web.app.utilities
             locationData = dataProvider.GetCachedData();
 
         }
-
+        /// <summary>
+        /// Load the Data using a dictionary and indexing the address 
+        /// </summary>
+        /// <returns></returns>
         public Dictionary<string, List<LocationData>> LoadAddressDictionary()
         {
             Dictionary<string, List<LocationData>> addressDictionary = new Dictionary<string, List<LocationData>>();
@@ -32,7 +35,10 @@ namespace web.app.utilities
 
             return addressDictionary;
         }
-
+        /// <summary>
+        /// Load the cordinate using a sprtial tree for the 
+        /// </summary>
+        /// <returns></returns>
         public Quadtree<LocationData> LoadQuadTree()
         {
             var quadTree = new Quadtree<LocationData>();
