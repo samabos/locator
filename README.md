@@ -1,4 +1,4 @@
-#Locator APP
+###Locator APP
 
 ## Instructions to Build and Run the Application
 
@@ -7,7 +7,7 @@
 3. Download the source code as a ZIP file from the email attachment.
 4. Open Visual Studio. Go to "File" > "Open" > "Project/Solution." Select the project folder from the extracted ZIP download.
 5. In Visual Studio, go to "Build" > "Build Solution" to compile the application.
-6. After a successful build, press F5 run the application.
+6. After a successful build, press F5 to run the application.
 7. A web browser will open, and you can access the application.
 8. Enter an address in the search box and click "Search" to retrieve location results.
 9. Click on a location result to view the 10 closest locations on the map.
@@ -20,7 +20,7 @@
 1. Write an application that allows the user to search the attached Data.csv file on the Address field. It does not need to search the City, State, or Zip fields.
 2. Display the results to the user.
 3. When a user selects a row in the results
-4. Display another set of results that shows the 10 closest locations in Data.csv based upon the selected row in the first set of results.
+4. Display another set of results that shows the 10 closest locations in Data.csv based on the selected row in the first set of results.
 
 **Solution Overview:**
 
@@ -46,17 +46,18 @@ The solution is a web application that enables users to search for and display l
 
 **Class Diagram:**
 
-![Class Diagram](image-link)
+![image](https://github.com/samabos/locator/assets/10947293/88771e97-9285-4521-86e0-4ad4b76b1cd2)
+
 
 **Class Diagram Definition:**
 
-- `IndexModel` (Razor Page): This is the main Razor Page for the application. It allows users to search for locations based on address and displays the results. When a user selects a location, it calls the `OnGetGetClosestLocations` handler to find and display the 10 closest locations.
+- `IndexModel` (Razor Page): This is the main Razor Page for the application. It allows users to search for locations based on the address and displays the results. When a user selects a location, it calls the `OnGetGetClosestLocations` handler to find and display the 10 closest locations.
 
 - `Query`: This class handles the logic for searching by address and finding the nearest locations. It uses a Quad-Tree data structure for spatial indexing. The `GetNearestLocations` method finds the 10 closest locations using the Haversine formula for distance calculation. The `SearchByAddress` method performs a case-insensitive partial match on the address to find matching locations.
 
 - `Payload`: This class is responsible for loading data and creating data structures. It loads data from a CSV file and creates a dictionary of addresses with associated location data. It also creates a Quad-Tree for spatial indexing.
 
-- `Haversine`: This class provides the Haversine formula for calculating the distance between two sets of coordinates. It's used by the `Query` class to calculate distances for proximity searches.
+- `Haversine`: This class provides the Haversine formula for calculating the distance between two sets of coordinates. The `Query` class uses it to calculate distances for proximity searches.
 
 - `CsvDataProvider`: This class loads location data from a CSV file. It uses the CsvHelper library to read data from the CSV file.
 
