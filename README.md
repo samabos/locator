@@ -1,4 +1,4 @@
-###Locator APP
+# Locator APP
 
 ## Instructions to Build and Run the Application
 
